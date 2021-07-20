@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css"/>
+    <title>Weather Forecast</title>
+  </head>
+  <body>
+    <header class="container-fluid bg-dark text-light mb-5 p-3">
+      <div class="d-flex justify-content-center">
+        <h1>Weather Dashboard</h1>
+      </div>
+    </header>
+    <div class="container-lg overflow-hidden float-start">
+      <div class="row my-2 border">
+        <div class="col-md-3 p-3 border">
+          <h2>Search for a City:</h2>
+          <div class="d-grid gap-2">
+            <input class="form-control" type="text" placeholder="City Name" aria-label="default input example">
+            <button class="btn btn-primary " type="button">Search</button>
+          </div>
+          <hr>
+          <!-- past search buttons go here -->
+        </div>
+        <div class="col-md-9 border">
+          <div class="d-block border">
+            <h2>Daily Weather</h2>
+            <!-- all other CURRENT DAY information goes here -->
+          </div>
+          <section class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+              <div class="card w-60">
+                <h3 class="card-header">Date</h3>
+                <p class="card-text">
+                  daily weather info here.
+                </p>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card w-60">
+                <h3 class="card-header">Date</h3>
+                <p class="card-text">
+                  daily weather info here.
+                </p>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card w-60">
+                <h3 class="card-header">Date</h3>
+                <p class="card-text">
+                  daily weather info here.
+                </p>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card w-60">
+                <h3 class="card-header">Date</h3>
+                <p class="card-text">
+                  daily weather info here.
+                </p>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card w-60">
+                <h3 class="card-header">Date</h3>
+                <p class="card-text">
+                  daily weather info here.
+                </p>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+      </div>
+        
+
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+  </body>
+</html>
