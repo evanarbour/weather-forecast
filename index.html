@@ -26,7 +26,7 @@
         <div class="col-md-3 p-3 border">
           <h2>Search for a City:</h2>
           <div class="d-grid gap-2">
-            <input id="searchbar-input" class="form-control" type="text" placeholder="City Name" aria-label="default input example">
+            <input id="search-city" class="form-control" type="text" placeholder="City Name" aria-label="default input example">
             <button id="search-btn" class="btn btn-primary " type="button">Search</button>
           </div>
           <hr>
@@ -34,8 +34,12 @@
         </div>
         <div class="col-md-9 border">
           <div class="d-block border">
-            <h2>Daily Weather</h2>
+            <h2 id="current-city"></h2>
             <!-- all other CURRENT DAY information goes here -->
+            <p id="current-temp"></p>
+            <p id="current-humidity"></p>
+            <p id="current-WS"></p>
+            <p id="current-UV"></p>
           </div>
           <section>
             <h4 class="mt-3">5-Day Forecast:</h4>
@@ -92,6 +96,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="./script.js"></script>
   </body>
 </html>
