@@ -9,5 +9,13 @@ hr {
 
 #card-body,
 #dashboard-info {
-  border: 3px solid lightslategray;
+  border: 2px solid lightslategray;
+}
+
+.hide {
+  display: none;
+}
+
+.centered {
+  justify-content: center;
 }

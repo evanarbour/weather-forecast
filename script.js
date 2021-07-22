@@ -1,4 +1,6 @@
 var apiKey = 'd90d02d7459753cd08a60263334493bf';
+var searchColumn = $('#search-column');
+var dashboard = $('#dashboard-info');
 var searchButton = $('#search-btn');
 var historyButton = $('#history-btn');
 var searchHistory = $('#search-history');
@@ -9,6 +11,7 @@ var currentHumidity = $('#current-humidity');
 var currentWS = $('#current-WS');
 var currentUV = $('#current-UV');
 var currentDay = $('#current-day')
+var weatherDescr = $('#weather-descr');
 var cardBody = $('#card-body');
 var city = '';
 
@@ -16,11 +19,15 @@ var city = '';
 
 function displayWeather(event) {
     event.preventDefault();
+    searchColumn.removeClass('centered');
+    dashboard.removeClass('hide');
     if(searchCity.val().trim()!=='') {
         city = searchCity.val().trim();
         currentWeather(city);
         displaySearchHistory();
-    }
+    } else {
+        alert('Please enter a valid city name')
+    };
     
 };
 
@@ -42,7 +49,13 @@ function currentWeather(city) {
             iconImg.attr('src', iconUrl);
             currentCity.text(data.name + ' ');
             currentCity.append(iconImg);
+
+            var weatherDescription = data.weather[0].description;
+            weatherDescr.text(weatherDescription);
+            weatherDescr.css('font-style', 'italic');
+
             currentDay.text(moment().format('dddd, l'));
+            currentDay.css('font-weight', 'bold');
 
             var tempReading = data.main.temp;
             currentTemp.text('Temperature:' + ' ' + Math.floor(tempReading) + '℉');
@@ -133,18 +146,20 @@ function getFiveDayForecast(city) {
 function displaySearchHistory() {
     historyButton = $(`<li><button id='history-btn' data-city='${city}' class='btn btn-outline-secondary' type='button'>${city}</button>`);
     searchHistory.append(historyButton);
+
+    $(`button.btn.btn-outline-secondary`).click(function(){
+
+        var buttonData = $(this).data('city');
+
+        currentWeather(buttonData);
+    })
 }
 
-var histButtonHandler = function (event) {
-    var city = event.target.attr('data-city');
+  
 
-    if (city) {
-        currentWeather(city);
-    };
-}
 
 
 searchButton.click(displayWeather);
-historyButton.click(histButtonHandler);
+
 
 
