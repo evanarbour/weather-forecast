@@ -1,5 +1,7 @@
 var apiKey = 'd90d02d7459753cd08a60263334493bf';
-var searchButton = $('#search-btn')
+var searchButton = $('#search-btn');
+var historyButton = $('#history-btn');
+var searchHistory = $('#search-history');
 var searchCity = $('#search-city');
 var currentCity = $('#current-city');
 var currentTemp = $('#current-temp');
@@ -17,6 +19,7 @@ function displayWeather(event) {
     if(searchCity.val().trim()!=='') {
         city = searchCity.val().trim();
         currentWeather(city);
+        displaySearchHistory();
     }
     
 };
@@ -123,15 +126,25 @@ function getFiveDayForecast(city) {
                 var humidity = data.list[(i * 8) + 1].main.humidity;
                 $(`#fHumid${i}`).text('Humidity:' + ' ' + Math.floor(humidity) + '%');
 
-            }
-            
-            
+            };
+        });
+};
 
-        })
+function displaySearchHistory() {
+    historyButton = $(`<li><button id='history-btn' data-city='${city}' class='btn btn-outline-secondary' type='button'>${city}</button>`);
+    searchHistory.append(historyButton);
+}
+
+var histButtonHandler = function (event) {
+    var city = event.target.attr('data-city');
+
+    if (city) {
+        currentWeather(city);
+    };
 }
 
 
 searchButton.click(displayWeather);
-
+historyButton.click(histButtonHandler);
 
 
