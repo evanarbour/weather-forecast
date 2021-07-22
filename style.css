@@ -6,3 +6,8 @@ button {
 hr {
   border: 0.5px solid darkgrey;
 }
+
+#card-body,
+#dashboard-info {
+  border: 3px solid lightslategray;
+}

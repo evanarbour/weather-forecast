@@ -6,7 +6,7 @@ var currentTemp = $('#current-temp');
 var currentHumidity = $('#current-humidity');
 var currentWS = $('#current-WS');
 var currentUV = $('#current-UV');
-var currentDate = (moment().format('l'));
+var currentDay = $('#current-day')
 var cardBody = $('#card-body');
 var city = '';
 
@@ -37,8 +37,9 @@ function currentWeather(city) {
             var iconUrl = "https://openweathermap.org/img/wn/"+ weatherIcon +"@2x.png";
             var iconImg = $(`<img>`);
             iconImg.attr('src', iconUrl);
-            currentCity.text(data.name + ' ' + currentDate + ' ');
+            currentCity.text(data.name + ' ');
             currentCity.append(iconImg);
+            currentDay.text(moment().format('dddd, l'));
 
             var tempReading = data.main.temp;
             currentTemp.text('Temperature:' + ' ' + Math.floor(tempReading) + '℉');
@@ -104,7 +105,7 @@ function getFiveDayForecast(city) {
             var fiveDayArray = data.list;
             for (i = 0; i < fiveDayArray.length; i++) {
                 var dataDate = data.list[(i * 8) + 1].dt_txt;
-                var formatDate = moment(dataDate).format('l')
+                var formatDate = moment(dataDate).format('dddd, MM / DD');
                 $(`#fDate${i}`).text(formatDate);
 
                 var icon = data.list[(i * 8) + 1].weather[0].icon;
@@ -117,7 +118,7 @@ function getFiveDayForecast(city) {
                 $(`#fTemp${i}`).text('Temp:' + ' ' + Math.floor(temp) + '℉');
 
                 var wind = data.list[(i * 8) + 1].wind.speed;
-                $(`#fWind${i}`).text('Wind:' + ' ' + Math.floor(wind) + 'MPH');
+                $(`#fWind${i}`).text('Wind:' + ' ' + Math.floor(wind) + ' ' + 'MPH');
 
                 var humidity = data.list[(i * 8) + 1].main.humidity;
                 $(`#fHumid${i}`).text('Humidity:' + ' ' + Math.floor(humidity) + '%');
