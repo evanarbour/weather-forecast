@@ -7,6 +7,7 @@ var currentHumidity = $('#current-humidity');
 var currentWS = $('#current-WS');
 var currentUV = $('#current-UV');
 var currentDate = (moment().format('l'));
+var cardBody = $('#card-body');
 var city = '';
 
 
@@ -29,6 +30,7 @@ function currentWeather(city) {
             return response.json();
         })
         .then(function (data) {
+            console.log('----Data by City Name----')
             console.log(data)
 
             var weatherIcon = data.weather[0].icon;
@@ -48,7 +50,7 @@ function currentWeather(city) {
             currentHumidity.text('Humidity:' + ' ' + Math.floor(humReading) + '%');
 
             getUVIndex(data.coord.lat, data.coord.lon);
-
+            getFiveDayForecast(data.name);
 
 
         })
@@ -63,30 +65,70 @@ function getUVIndex(lat, lon) {
             return response.json();
         })
         .then(function (data) {
-            console.log('----One Call Data----');
+            console.log('----Data for UV Index----');
             console.log(data);
 
-            var UVIreadingData = data.current.uvi;
-            var UVIreadingNumb = parseFloat(UVIreadingData);
-            UVdisplay = $(`<span class="py-2 px-4 rounded">${UVIreadingNumb}</span>`);
+            var UVreadingData = data.current.uvi;
+            var UVreadingNumb = parseFloat(UVreadingData);
+            UVdisplay = $(`<span class="py-2 px-4 rounded">${UVreadingNumb}</span>`);
             currentUV.text('UV Index:' + ' ');
             currentUV.append(UVdisplay);
             
-            if (UVIreadingNumb <= 2.0 ) {
+            if (UVreadingNumb <= 2.0 ) {
                 UVdisplay.addClass('bg-success text-white');
-            } else if (UVIreadingNumb > 2.1 && UVIreadingNumb < 5.9 ) {
+            } else if (UVreadingNumb > 2.1 && UVreadingNumb < 5.9 ) {
                 UVdisplay.addClass('bg-warning text-dark');
-            } else if (UVIreadingNumb > 6.0  && UVIreadingNumb < 7.9 ) {
+            } else if (UVreadingNumb > 6.0  && UVreadingNumb < 7.9 ) {
                 UVdisplay.css({'background-color': 'orange', 'color': 'black'});
-            } else if (UVIreadingNumb > 8.0 && UVIreadingNumb < 10.9 ) {
+            } else if (UVreadingNumb > 8.0 && UVreadingNumb < 10.9 ) {
                 UVdisplay.addClass('bg-danger text-white');
             } else {
                 UVdisplay.css({'background-color': 'purple', 'color': 'white'})
             };
 
             
+        });
+}
+
+function getFiveDayForecast(city) {
+    var fiveDayUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&units=imperial' + '&appid=' + apiKey;
+
+    fetch(fiveDayUrl)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            console.log('----Five Day Forecast----');
+            console.log(data);
+
+            var fiveDayArray = data.list;
+            for (i = 0; i < fiveDayArray.length; i++) {
+                var dataDate = data.list[(i * 8) + 1].dt_txt;
+                var formatDate = moment(dataDate).format('l')
+                $(`#fDate${i}`).text(formatDate);
+
+                var icon = data.list[(i * 8) + 1].weather[0].icon;
+                var iconfUrl = "https://openweathermap.org/img/wn/"+ icon +"@2x.png";
+                var iconfImg = $(`<img>`);
+                iconfImg.attr('src', iconfUrl);
+                $(`#fIcon${i}`).html(iconfImg);
+                
+                var temp = data.list[(i * 8) + 1].main.temp;
+                $(`#fTemp${i}`).text('Temp:' + ' ' + Math.floor(temp) + '℉');
+
+                var wind = data.list[(i * 8) + 1].wind.speed;
+                $(`#fWind${i}`).text('Wind:' + ' ' + Math.floor(wind) + 'MPH');
+
+                var humidity = data.list[(i * 8) + 1].main.humidity;
+                $(`#fHumid${i}`).text('Humidity:' + ' ' + Math.floor(humidity) + '%');
+
+            }
+            
+            
+
         })
 }
+
 
 searchButton.click(displayWeather);
 
