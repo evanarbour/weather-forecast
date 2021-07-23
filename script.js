@@ -121,7 +121,7 @@ function getFiveDayForecast(city) {
             var fiveDayArray = data.list;
             for (i = 0; i < fiveDayArray.length; i++) {
                 var dataDate = data.list[(i * 8) + 1].dt_txt;
-                var formatDate = moment(dataDate).format('dddd, MM / DD');
+                var formatDate = moment(dataDate).format('dddd, MM/DD');
                 $(`#fDate${i}`).text(formatDate);
 
                 var icon = data.list[(i * 8) + 1].weather[0].icon;
