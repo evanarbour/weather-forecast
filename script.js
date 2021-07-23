@@ -26,7 +26,7 @@ function displayWeather(event) {
         currentWeather(city);
         displaySearchHistory();
     } else {
-        alert('Please enter a valid city name')
+        alert('Please enter a valid city name');
     };
     
 };
