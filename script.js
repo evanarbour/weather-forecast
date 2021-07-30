@@ -33,7 +33,7 @@ function displayWeather(event) {
 
 
 function currentWeather(city) {
-    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial" + "&appid=" + apiKey;
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial" + "&appid=" + apiKey;
 
     fetch(queryURL)
         .then(function (response) {
