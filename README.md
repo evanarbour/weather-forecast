@@ -8,6 +8,6 @@ The trickiest part of the project was getting the past search buttons to bring u
 
 I worked towards a minimalist style and the simple view of the information. I decided to hide the entire dashboard until after the user types in their first search to help create a more streamlined look.
 
-![screenshot of weather dashboard](./images/dashboard.png)
+![screenshot of weather dashboard](./assets/images/dashboard.png)
 
 Click [this link](https://evanarbour.github.io/weather-forecast/) to use the Weather Dashboard.
