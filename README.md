@@ -6,7 +6,7 @@ The OpenWeatherMap API is easy to use and the organization of the JSON response 
 
 The trickiest part of the project was getting the past search buttons to bring up that cities information. I ended up dynamically creating the buttons through Javascript and then creating a click event inside the function that referred back to those buttons.
 
-I like the minimalist styling of the dashboard itself and the simple view of the information. I decided to hide the entire dashboard until after the user types in their first search because it makes the first look cleaner and more streamlined.
+I worked towards a minimalist style and the simple view of the information. I decided to hide the entire dashboard until after the user types in their first search to help create a more streamlined look.
 
 ![screenshot of weather dashboard](./images/dashboard.png)
 
